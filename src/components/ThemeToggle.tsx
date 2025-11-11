@@ -21,7 +21,11 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button onClick={toggle} className="ml-4 text-sm px-3 py-1 rounded border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50">
+    <button 
+      onClick={toggle} 
+      className="ml-4 px-4 py-2 rounded-lg border border-gray-600 bg-gray-700 text-white hover:bg-gray-600 hover:border-[#FACC15] transition-colors font-medium"
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+    >
       {dark ? "Light" : "Dark"}
     </button>
   );

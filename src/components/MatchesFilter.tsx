@@ -25,12 +25,12 @@ type Match = {
 };
 
 const COMPETITIONS = [
-  { code: "PL", name: "Premier League", flag: "🏴󐁧󐁢󐁥󐁮󐁧󐁿" },
-  { code: "PD", name: "La Liga", flag: "🇪🇸" },
-  { code: "SA", name: "Serie A", flag: "🇮🇹" },
-  { code: "BL1", name: "Bundesliga", flag: "🇩🇪" },
-  { code: "FL1", name: "Ligue 1", flag: "🇫🇷" },
-  { code: "CL", name: "Champions League", flag: "🏆" },
+  { code: "PL", name: "Premier League" },
+  { code: "PD", name: "La Liga" },
+  { code: "SA", name: "Serie A" },
+  { code: "BL1", name: "Bundesliga" },
+  { code: "FL1", name: "Ligue 1" },
+  { code: "CL", name: "Champions League" },
 ];
 
 export default function MatchesFilter() {
@@ -111,7 +111,7 @@ export default function MatchesFilter() {
           >
             {COMPETITIONS.map((comp) => (
               <option key={comp.code} value={comp.code}>
-                {comp.flag} {comp.name}
+                {comp.name}
               </option>
             ))}
           </select>

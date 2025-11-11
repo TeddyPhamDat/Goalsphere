@@ -101,7 +101,6 @@ export default function StandingsPage() {
           </div>
         </div>
       </div>
-      <div className="mb-2 text-xs text-gray-500">Nguồn dữ liệu: <span className={source === "api" ? "text-green-600" : "text-red-600"}>{source === "api" ? "Football-Data.org" : "Lỗi API"}</span></div>
       <div className="card p-0 table-responsive mb-8">
         {loading ? (
           <div className="p-4 text-center text-sm text-gray-500">Đang tải dữ liệu...</div>

@@ -5,6 +5,28 @@ import MatchesFilter from "@/components/MatchesFilter";
 import StandingsFilter from "@/components/StandingsFilter";
 import { getNews } from "@/lib/cms";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "GoalSphere — Football News, Matches, Standings & Live Scores",
+  description:
+    "GoalSphere - Your ultimate destination for football news, live scores, match schedules, standings, and in-depth analysis. Stay updated with Premier League, La Liga, Serie A, Bundesliga, Champions League and more. Real-time updates 24/7.",
+  keywords: "football news, soccer news, live scores, match results, standings, Premier League, La Liga, Champions League, football updates, sports news, GoalSphere",
+  authors: [{ name: "GoalSphere Editorial Team" }],
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    url: "https://goalsphere.vercel.app",
+    title: "GoalSphere — Football News, Matches & Standings",
+    description: "Stay updated with the latest football news, live scores, and standings from top leagues worldwide",
+    siteName: "GoalSphere",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GoalSphere — Football News & Live Scores",
+    description: "Your ultimate destination for football news and updates",
+  },
+};
 
 export default async function Home() {
   // Fetch news data

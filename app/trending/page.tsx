@@ -22,13 +22,10 @@ export default async function TrendingPage() {
         <AdSlot size="728x90" />
       </div>
 
-      {/* Page Title with Fire Icon */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="text-4xl">🔥</div>
-        <div>
-          <h1 className="text-3xl font-bold text-[var(--navy)]">Trending Now</h1>
-          <p className="text-zinc-600">Những gì đang hot nhất trong thế giới bóng đá</p>
-        </div>
+      {/* Page Title */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-[var(--navy)]">Trending Now</h1>
+        <p className="text-zinc-600">Những gì đang hot nhất trong thế giới bóng đá</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -44,8 +41,8 @@ export default async function TrendingPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 1024px) 100vw, 66vw"
                 />
-                <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-1 rounded-full font-bold text-sm flex items-center gap-2">
-                  <span className="animate-pulse">🔥</span> HOT NHẤT
+                <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-1 rounded-full font-bold text-sm">
+                  HOT NHẤT
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6">
                   <h2 className="text-2xl font-bold text-white mb-2">{hotNews.title}</h2>
@@ -62,8 +59,8 @@ export default async function TrendingPage() {
 
           {/* Trending News Grid */}
           <section>
-            <h2 className="text-2xl font-bold text-[var(--navy)] mb-4 flex items-center gap-2">
-              <span>📈</span> Đang Thịnh Hành
+            <h2 className="text-2xl font-bold text-[var(--navy)] mb-4">
+              Đang Thịnh Hành
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {trendingNews.map((n, idx) => (
@@ -99,8 +96,8 @@ export default async function TrendingPage() {
 
           {/* Latest News */}
           <section>
-            <h2 className="text-2xl font-bold text-[var(--navy)] mb-4 flex items-center gap-2">
-              <span>⚡</span> Mới Nhất
+            <h2 className="text-2xl font-bold text-[var(--navy)] mb-4">
+              Mới Nhất
             </h2>
             <div className="space-y-4">
               {latestNews.map((n) => (
@@ -138,16 +135,16 @@ export default async function TrendingPage() {
             
             {/* Top Scorers */}
             <div className="card p-5">
-              <h3 className="text-lg font-bold text-[var(--navy)] mb-4 flex items-center gap-2">
-                <span>⚽</span> Top Ghi Bàn
+              <h3 className="text-lg font-bold text-[var(--navy)] mb-4">
+                Top Ghi Bàn
               </h3>
               <TopScorersWidget />
             </div>
 
             {/* Popular Tags */}
             <div className="card p-5">
-              <h3 className="text-lg font-bold text-[var(--navy)] mb-4 flex items-center gap-2">
-                <span>🏷️</span> Chủ Đề Hot
+              <h3 className="text-lg font-bold text-[var(--navy)] mb-4">
+                Chủ Đề Hot
               </h3>
               <div className="flex flex-wrap gap-2">
                 {['Premier League', 'La Liga', 'Champions League', 'World Cup', 'Transfer', 'Highlights', 'Messi', 'Ronaldo', 'Haaland', 'Neymar'].map(tag => (
@@ -163,8 +160,8 @@ export default async function TrendingPage() {
 
             {/* Social Stats */}
             <div className="card p-5">
-              <h3 className="text-lg font-bold text-[var(--navy)] mb-4 flex items-center gap-2">
-                <span>📊</span> Thống Kê
+              <h3 className="text-lg font-bold text-[var(--navy)] mb-4">
+                Thống Kê
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
