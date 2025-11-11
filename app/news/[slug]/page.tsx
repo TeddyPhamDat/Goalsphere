@@ -87,12 +87,31 @@ export default async function NewsDetail({ params }: Props) {
           {/* Article Content */}
           {article.content ? (
             <div className="prose prose-lg max-w-none">
-              {/* Split content by paragraphs and render */}
-              {article.content.split('\n\n').map((paragraph, idx) => (
+              {/* Split content by paragraphs and render - show first 5 paragraphs */}
+              {article.content.split('\n\n').slice(0, 5).map((paragraph, idx) => (
                 <p key={idx} className="mb-4 text-zinc-800 leading-relaxed">
                   {paragraph}
                 </p>
               ))}
+              
+              {/* Show "Read more" if content is longer than 5 paragraphs */}
+              {article.content.split('\n\n').length > 5 && (
+                <details className="mt-6">
+                  <summary className="cursor-pointer text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2 py-3 px-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                    <span>📖 Đọc thêm ({article.content.split('\n\n').length - 5} đoạn còn lại)</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <div className="mt-4 pt-4 border-t border-zinc-200">
+                    {article.content.split('\n\n').slice(5).map((paragraph, idx) => (
+                      <p key={idx + 5} className="mb-4 text-zinc-800 leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </details>
+              )}
             </div>
           ) : (
             <div className="prose prose-lg max-w-none">
