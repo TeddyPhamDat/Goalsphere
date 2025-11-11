@@ -29,7 +29,8 @@ async function fetchMatchDetail(id: string): Promise<any> {
 }
 
 
-export async function GET(request: Request, context: { params: { id: string } }) {
+
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   if (!API_KEY) {
     console.error("Football-Data.org API key is missing.");
     return NextResponse.json(
@@ -38,7 +39,7 @@ export async function GET(request: Request, context: { params: { id: string } })
     );
   }
 
-  const id = context.params.id;
+  const { id } = await context.params;
   const match = await fetchMatchDetail(id);
   if (!match) {
     return NextResponse.json({ error: "Match not found" }, { status: 404 });
