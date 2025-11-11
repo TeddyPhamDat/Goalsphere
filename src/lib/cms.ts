@@ -48,7 +48,7 @@ export async function fetchHygraphQuery<T>(query: string): Promise<T> {
     },
     body: JSON.stringify({ query }),
     // Add cache to reduce API calls
-    next: { revalidate: 3600 }, // Cache for 1 hour
+    next: { revalidate: 120 }, // Cache for 2 minutes
   });
 
   if (!response.ok) {
