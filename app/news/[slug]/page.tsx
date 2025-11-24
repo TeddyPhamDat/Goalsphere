@@ -1,4 +1,5 @@
 import AdSlot from "@/components/AdSlot";
+import ContentGuard from "@/components/ContentGuard";
 import { getNewsBySlug, getNews } from "@/lib/cms";
 import { notFound } from "next/navigation";
 import ShareButtons from "@/components/ShareButtons";
@@ -79,10 +80,12 @@ export default async function NewsDetail({ params }: Props) {
             {article.excerpt}
           </p>
 
-          {/* Inline Ad */}
-          <div className="flex justify-center my-6">
-            <AdSlot size="300x250" />
-          </div>
+          {/* Inline Ad - Only show if article has content */}
+          <ContentGuard hasContent={!!article.content && article.content.length > 100}>
+            <div className="flex justify-center my-6">
+              <AdSlot size="300x250" />
+            </div>
+          </ContentGuard>
 
           {/* Article Content */}
           {article.content ? (
@@ -119,19 +122,23 @@ export default async function NewsDetail({ params }: Props) {
             </div>
           )}
 
-          {/* Bottom Ad */}
-          <div className="flex justify-center my-6 pt-6 border-t">
-            <AdSlot size="728x90" />
-          </div>
+          {/* Bottom Ad - Only show if article has content */}
+          <ContentGuard hasContent={!!article.content && article.content.length > 100}>
+            <div className="flex justify-center my-6 pt-6 border-t">
+              <AdSlot size="728x90" />
+            </div>
+          </ContentGuard>
         </div>
 
         <RelatedPosts slug={article.slug} />
       </article>
       
       <aside className="lg:col-span-4 space-y-6">
-        <div className="sticky top-20">
-          <AdSlot size="300x600" className="w-[300px]" />
-        </div>
+        <ContentGuard hasContent={!!article.content && article.content.length > 100}>
+          <div className="sticky top-20">
+            <AdSlot size="300x600" className="w-[300px]" />
+          </div>
+        </ContentGuard>
       </aside>
     </main>
   );

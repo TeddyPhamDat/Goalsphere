@@ -31,13 +31,18 @@ export const metadata: Metadata = {
 export default async function Home() {
   // Fetch news data
   const news = await getNews();
+  
+  // Don't show ads if there's no content - AdSense policy compliance
+  const hasContent = news.length > 0;
 
   return (
     <main className="container-app">
-      {/* Top Banner */}
-      <div className="flex justify-center py-4">
-        <AdSlot size="728x90" />
-      </div>
+      {/* Top Banner - Only show if we have content */}
+      {hasContent && (
+        <div className="flex justify-center py-4">
+          <AdSlot size="728x90" />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8 space-y-8">
@@ -48,8 +53,13 @@ export default async function Home() {
               <Link className="text-sm nav-link" href="/news">View all</Link>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
-              {news.slice(0, 6).map((n) => (
-                <Link key={n.slug} href={`/news/${n.slug}`} className="card card-hover p-4 flex gap-4">
+              {news.length === 0 ? (
+                <div className="col-span-2 text-center py-8 text-zinc-600">
+                  <p className="text-lg">Nội dung đang được cập nhật. Vui lòng quay lại sau.</p>
+                </div>
+              ) : (
+                news.slice(0, 6).map((n) => (
+                  <Link key={n.slug} href={`/news/${n.slug}`} className="card card-hover p-4 flex gap-4">
                   <div className="relative w-28 h-20 bg-zinc-200 rounded overflow-hidden">
                     {n.thumbnail?.url && (
                       <Image 
@@ -66,7 +76,8 @@ export default async function Home() {
                     <p className="text-sm text-zinc-600 line-clamp-2">{n.excerpt}</p>
                   </div>
                 </Link>
-              ))}
+                ))
+              )}
             </div>
           </section>
 

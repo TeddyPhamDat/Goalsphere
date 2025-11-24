@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getNews } from "@/lib/cms";
 import Image from "next/image";
 import AdSlot from "@/components/AdSlot";
+import ContentGuard from "@/components/ContentGuard";
 import TopScorersWidget from "@/components/TopScorersWidget";
 
 export const metadata = { 
@@ -50,6 +51,9 @@ function extractTrendingKeywords(newsItems: any[]): string[] {
 export default async function TrendingPage() {
   const allNews = await getNews();
   
+  // Don't show ads if there's no content - AdSense policy compliance
+  const hasContent = allNews.length > 0;
+  
   // Add trending scores and sort
   const newsWithScores = allNews.map(n => ({
     ...n,
@@ -77,10 +81,12 @@ export default async function TrendingPage() {
 
   return (
     <main className="container-app py-6">
-      {/* Hero Banner */}
-      <div className="flex justify-center mb-6">
-        <AdSlot size="728x90" />
-      </div>
+      {/* Hero Banner - Only show if we have content */}
+      <ContentGuard hasContent={hasContent}>
+        <div className="flex justify-center mb-6">
+          <AdSlot size="728x90" />
+        </div>
+      </ContentGuard>
 
       {/* Page Title */}
       <div className="mb-6">
@@ -115,10 +121,12 @@ export default async function TrendingPage() {
             </Link>
           )}
 
-          {/* Ad Between Content */}
-          <div className="flex justify-center">
-            <AdSlot size="728x90" />
-          </div>
+          {/* Ad Between Content - Only show if we have content */}
+          <ContentGuard hasContent={hasContent}>
+            <div className="flex justify-center">
+              <AdSlot size="728x90" />
+            </div>
+          </ContentGuard>
 
           {/* Trending News Grid */}
           <section>
@@ -207,9 +215,11 @@ export default async function TrendingPage() {
 
         {/* Sidebar */}
         <aside className="lg:col-span-4 space-y-6">
-          {/* Ad */}
           <div className="sticky top-20 space-y-6">
-            <AdSlot size="300x600" className="w-[300px]" />
+            {/* Ad - Only show if we have content */}
+            <ContentGuard hasContent={hasContent}>
+              <AdSlot size="300x600" className="w-[300px]" />
+            </ContentGuard>
             
             {/* Top Scorers */}
             <div className="card p-5">

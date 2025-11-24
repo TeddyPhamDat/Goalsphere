@@ -109,8 +109,14 @@ export const getNewsBySlugQuery = (slug: string) => `
  * @returns A promise that resolves to an array of news articles.
  */
 export async function getNews(): Promise<NewsArticle[]> {
-    const data = await fetchHygraphQuery<{ news: NewsArticle[] }>(getNewsQuery);
-    return data.news;
+    try {
+        const data = await fetchHygraphQuery<{ news: NewsArticle[] }>(getNewsQuery);
+        return data.news || [];
+    } catch (error) {
+        console.error('Error fetching news:', error);
+        // Return empty array instead of throwing - prevents showing ads on error pages
+        return [];
+    }
 }
 
 /**

@@ -1,6 +1,7 @@
 import { matches, standings, news } from "@/lib/mockData";
 import TopScorersWidget from "@/components/TopScorersWidget";
 import AdSlot from "@/components/AdSlot";
+import ContentGuard from "@/components/ContentGuard";
 import Link from "next/link";
 
 interface Props { params: Promise<{ slug: string }> }
@@ -80,7 +81,9 @@ export default async function LeaguePage({ params }: Props) {
       </section>
 
       <aside className="lg:col-span-4 space-y-6">
-        <AdSlot size="300x600" className="w-[300px]" />
+        <ContentGuard hasContent={standings.length > 0}>
+          <AdSlot size="300x600" className="w-[300px]" />
+        </ContentGuard>
         <TopScorersWidget />
       </aside>
     </main>
